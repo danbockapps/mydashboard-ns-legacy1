@@ -1,4 +1,5 @@
 import { OnInit, Component } from "@angular/core";
+import { User } from "../../shared/user/user";
 
 @Component({
   selector: "md-login",
@@ -8,12 +9,18 @@ import { OnInit, Component } from "@angular/core";
 })
 
 export class LoginComponent implements OnInit {
+  user: User;
+  email = "nativescriptrocks@telerik.com";
+
+  constructor() {
+    this.user = new User();
+  }
+
   ngOnInit(): void {
     console.log('hello');
   }
 
-  email = "nativescriptrocks@telerik.com";
   submit() {
-    alert("You’re using: " + this.email);
+    alert("You’re using: " + this.user.email);
   }
 }
