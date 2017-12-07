@@ -12,7 +12,6 @@ import { UserService } from "../../shared/user/user.service";
 
 export class LoginComponent implements OnInit {
   user: User;
-  email = "nativescriptrocks@telerik.com";
 
   constructor(private userService: UserService) {
     this.user = new User();
@@ -23,6 +22,12 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    this.userService.login(this.user);
+    this.userService.login(this.user)
+    .subscribe(
+      () => {
+        alert("Login successful.");
+      },
+      () => alert("Unfortunately we were unable to log you in.")
+    );
   }
 }
