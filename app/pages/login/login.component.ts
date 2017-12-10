@@ -1,6 +1,7 @@
 import { OnInit, Component } from "@angular/core";
 import { User } from "../../shared/user/user";
 import { UserService } from "../../shared/user/user.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "md-login",
@@ -13,7 +14,7 @@ import { UserService } from "../../shared/user/user.service";
 export class LoginComponent implements OnInit {
   user: User;
 
-  constructor(private userService: UserService) {
+  constructor(private router: Router, private userService: UserService) {
     this.user = new User();
   }
 
@@ -24,10 +25,8 @@ export class LoginComponent implements OnInit {
   submit() {
     this.userService.login(this.user)
     .subscribe(
-      () => {
-        alert("Login successful.");
-      },
-      () => alert("Unfortunately we were unable to log you in.")
+      () => this.router.navigate(["/home"]),
+      (error) => alert("Unfortunately we could not find your account.")
     );
   }
 }
