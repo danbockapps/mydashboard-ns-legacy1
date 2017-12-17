@@ -7,6 +7,9 @@ import "rxjs/add/operator/map";
 import { User } from "./user";
 import { Config } from "../config";
 
+// This is TypeScript for var appSettings = require("application-settings");
+import * as appSettings from "application-settings";
+
 @Injectable()
 export class UserService {
   constructor(private http: Http) {}
@@ -25,9 +28,12 @@ export class UserService {
     )
     .map(response => response.json())
     .do(data => {
-      //Config.token = data.Result.access_token;
-      //console.dir prints [Object object] to the log.
+      // I don't think Config needs token.
+      //Config.token = data.token;
+      //TODO change server responses to things other than 200 OK and handle them here
       console.log(JSON.stringify(data));
+      appSettings.setString("token", data.token);
+      console.log("Token saved to settings: " + appSettings.getString("token"));
     })
     .catch(this.handleErrors);
   }

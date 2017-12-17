@@ -2,6 +2,8 @@ import { OnInit, Component } from "@angular/core";
 import { User } from "../../shared/user/user";
 import { UserService } from "../../shared/user/user.service";
 import { Router } from "@angular/router";
+import { Config } from "../../shared/config";
+import * as appSettings from "application-settings";
 
 @Component({
   selector: "md-login",
@@ -19,7 +21,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('hello');
+    if(appSettings.getString('token')) {
+      this.router.navigate(["/home"]);
+    }
   }
 
   submit() {
