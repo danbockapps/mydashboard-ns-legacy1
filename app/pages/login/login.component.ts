@@ -4,6 +4,7 @@ import { UserService } from "../../shared/user/user.service";
 import { Router } from "@angular/router";
 import { Config } from "../../shared/config";
 import * as appSettings from "application-settings";
+import * as connectivity from "tns-core-modules/connectivity";
 
 @Component({
   selector: "md-login",
@@ -27,10 +28,15 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    this.userService.login(this.user)
-    .subscribe(
-      () => this.router.navigate(["/home"]),
-      (error) => alert("Unfortunately we could not find your account.")
-    );
+    if(connectivity.getConnectionType() === connectivity.connectionType.none) {
+      alert("Internet connection not found.");
+    }
+      else {
+      this.userService.login(this.user)
+      .subscribe(
+        () => this.router.navigate(["/home"]),
+        (error) => alert("Unfortunately we could not find your account.")
+      );
+    }
   }
 }
