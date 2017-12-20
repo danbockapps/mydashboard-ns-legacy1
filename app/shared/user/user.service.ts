@@ -30,12 +30,24 @@ export class UserService {
     .do(data => {
       // I don't think Config needs token.
       //Config.token = data.token;
-      //TODO change server responses to things other than 200 OK and handle them here
       console.log(JSON.stringify(data));
       appSettings.setString("token", data.token);
-      console.log("Token saved to settings: " + appSettings.getString("token"));
     })
     .catch(this.handleErrors);
+  }
+
+  getDashboard() {
+    return this.http.get(
+      Config.apiUrl + "dashboard", {headers: this.createRequestHeaders()}
+    )
+    .map(response => response.json())
+    .catch(this.handleErrors);
+  }
+
+  private createRequestHeaders() {
+    let headers = new Headers();
+    headers.append("Authorization", "Bearer " + appSettings.getString("token"));
+    return headers;
   }
 
   handleErrors(error: Response) {

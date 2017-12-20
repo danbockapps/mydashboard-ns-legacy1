@@ -17,7 +17,14 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         console.log('The home page has been loaded.');
-        console.log('The token is: ' + appSettings.getString("token"));
+        this.getDashboard();
+    }
+
+    getDashboard(): void {
+        this.userService.getDashboard().subscribe(
+            (data) => console.log(JSON.stringify(data)),
+            (error) => alert("There was an error.")
+        );
     }
     
     logout(): void {
