@@ -10,6 +10,7 @@ import { ItemsComponent } from "./item/items.component";
 import { ItemDetailComponent } from "./item/item-detail.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { HomeComponent } from "./pages/home/home.component";
+import { WeightGraphComponent } from "./weight-graph/weight-graph.component";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -31,6 +32,7 @@ import { HomeComponent } from "./pages/home/home.component";
         AppComponent,
         ItemsComponent,
         ItemDetailComponent,
+        WeightGraphComponent,
         ...navigatableComponents
     ],
     providers: [
