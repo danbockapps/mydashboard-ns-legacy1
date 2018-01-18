@@ -11,12 +11,7 @@ import { ItemDetailComponent } from "./item/item-detail.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { HomeComponent } from "./pages/home/home.component";
 import { WeightGraphComponent } from "./weight-graph/weight-graph.component";
-
-// Uncomment and add to NgModule imports if you need to use two-way binding
-// import { NativeScriptFormsModule } from "nativescript-angular/forms";
-
-// Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
-// import { NativeScriptHttpModule } from "nativescript-angular/http";
+import { NativeScriptUIChartModule } from "nativescript-pro-ui/chart/angular";
 
 @NgModule({
     bootstrap: [
@@ -26,6 +21,7 @@ import { WeightGraphComponent } from "./weight-graph/weight-graph.component";
         NativeScriptModule,
         NativeScriptFormsModule,
         NativeScriptHttpModule,
+        NativeScriptUIChartModule,
         AppRoutingModule
     ],
     declarations: [
